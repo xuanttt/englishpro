@@ -7,3 +7,5 @@
 - GITHUBのアカウント: https://github.com/xuanttt
 - 名前：Tran Thi Thanh Xuan
 
+- GITHUBのアカウント: https://github.com/iamkots
+- 名前：Hoang Nhat Quan
