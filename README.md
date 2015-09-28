@@ -12,3 +12,6 @@
 
 - GITHUBのアカウント: https://github.com/trungnt-hedspi
 - 名前：Nguyen Thanh Trung
+
+- GITHUBのアカウント: https://github.com/namson168
+- 名前：Bui Quoc Dat
