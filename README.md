@@ -9,3 +9,6 @@
 
 - GITHUBのアカウント: https://github.com/iamkots
 - 名前：Hoang Nhat Quan
+
+- GITHUBのアカウント: https://github.com/trungnt-hedspi
+- 名前：Nguyen Thanh Trung
