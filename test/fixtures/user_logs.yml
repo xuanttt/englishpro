@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  act: MyString
+  act_id: 1
+  status: MyString
+  log_data: MyString
+
+two:
+  user_id: 1
+  act: MyString
+  act_id: 1
+  status: MyString
+  log_data: MyString
