@@ -1,0 +1,15 @@
+<% provide(:title, "User List") %>
+<div>
+  <h4>All Users</h4>
+
+  <ol class="">
+    <% @users.each do |user| %>
+    <li id="user-<%= user.id %>">
+      <span class=""><%= link_to user.id, user %></span>
+      <span class=""><%= user.name %></span>
+      <span class=""><%= user.email %></span>
+    </li>
+    <% end %>
+  </ol>
+  <%= will_paginate %>
+</div>

@@ -3,6 +3,12 @@ source 'https://rubygems.org'
 gem 'devise'
 gem 'chartkick'
 
+# Bootstrap for CSS
+gem 'bootstrap-sass', '~> 3.3', '>= 3.3.5.1'
+
+# Paginate
+gem 'will_paginate', '~> 3.0', '>= 3.0.7'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.1'
 # Use sqlite3 as the database for Active Record

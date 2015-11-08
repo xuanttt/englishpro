@@ -1,3 +1,4 @@
+
 <h1>This is our home page</h1>
 <p>ホームページです</p>
 
@@ -15,13 +16,11 @@
         library: {'hAxis' => {'format' => 'yyyy/MM/dd'}}%>
     <% end %>
     <% end %>
-    
-    <h3>Past goals:</h3>
-    <% plancount = 0 %>
-    <% current_user.plans.each do |plan| %>
-    <% if plan.is_over? %>
-    <% plancount = plancount + 1 %>
-        <p><%= plan_explanation(plan, plancount) %></p>
-    <% end %>
-    <% end %>
-<% end %>
+
+  <% end %>  
+  <% if user_signed_in? %>
+    <%= link_to "Create new plan", new_plan_path, class: "btn btn-lg btn-primary" %>
+  <% else %>
+    <%= link_to "Sign up now!", new_user_registration_path, class: "btn btn-lg btn-primary" %>
+  <% end %>
+</div>

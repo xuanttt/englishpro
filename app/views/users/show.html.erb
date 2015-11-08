@@ -1,0 +1,101 @@
+<% provide(:title, 'Profile') %>
+<h3>Basic Info</h3>
+
+<form>
+    <ul>
+    <li>
+    <div>
+        <label><strong>Email:</strong></label>
+        <%= @user.email %>
+    </div>
+    </li>
+    
+    <li>
+    <div>
+        <label><strong>Name:</strong></label>
+        <%= @user.name %>
+    </div>
+    </li>
+    
+    <li>
+    <div>
+        <label><strong>Gender:</strong></label>
+        <%= @user.gender %>
+    </div>
+    </li>
+    
+    <li>
+    <div>
+        <label><strong>Age:</strong></label>
+        <%= @user.age %>
+    </div>
+    </li>
+    
+    </ul>
+
+</form>
+<hr>
+<h4>Plans List</h4>
+ <% if @user.plans.count == 0 %>
+ <div>You don't have any plans</div>
+ <% else %>
+    <% @user.plans.each do |plan| %>
+    <div class="col-md-12 panel-footer"><%= link_to plan.id, plan%>
+    </div>
+    <% end %>
+    <%= will_paginate @user.plans.paginate(page: params[:page]) %> 
+   
+<% end %>
+    
+<hr>
+<h4>Friend list</h4>
+<% if @user.friends.count == 0 %>
+    <div>No friend</div>
+<% else %>
+    <div> <% @user.friends.count == 1 ? (puts "friend"):(puts "friend") %></div>
+<% end %>
+
+<% if @is_me %>
+<ul>
+    <% @user.friends.each_with_index do |friend, i| %>
+        <% if friend.user_id == @user.id %>
+            <li><a href="<%= "#{User.find(friend.friend_id).id}"%>"><%= "#{User.find(friend.friend_id).name}" %></a> - <%=  "#{@user.status_with(friend.friend_id).to_s}" %></li>
+        <% else %>
+            <li><a href="<%= "#{User.find(friend.user_id).id}"%>"><%= "#{User.find(friend.user_id).name}" %> </a> - <%= "#{@user.status_with(friend.user_id).to_s}" %></li>
+        <% end %>
+    <% end %>
+</ul>
+<% else %>
+<% case @status %>
+<% when :nothing %>
+<%= form_tag('/friends', method: :post) do %>
+    <%= hidden_field_tag :user_id, current_user.id %>
+    <%= hidden_field_tag :friend_id, @user.id %>
+    <%= submit_tag "Request", class: "btn btn-primary" %>
+<% end %>
+
+<% when :requested %>
+<h4>Requested</h4>
+<%= form_tag "/friends/#{@friend.id}", method: :delete do %>
+    <%= hidden_field_tag :id, @friend.id %>
+    <%= hidden_field_tag :friend_id, @user.id %>
+    <%= submit_tag "Remove Request", class: "btn btn-warning" %>
+<% end %>
+
+<% when :be_requested %>
+<h4>Be requested</h4>
+<%= form_tag "/friends/#{@friend.id}", method: :put do %>
+    <%= hidden_field_tag :id, @friend.id %>
+    <%= hidden_field_tag :friend_id, @user.id %>
+    <%= submit_tag "Accept", class: "btn btn-info" %>    
+<% end %>
+
+<% when :be_accepted, :accepted %>
+<%= form_tag "/friends/#{@friend.id}", method: :delete do %>
+    <%= hidden_field_tag :id, @friend.id %>
+    <%= hidden_field_tag :friend_id, @user.id %>
+    <%= submit_tag "Unfriend", class: "btn btn-danger" %>   
+<% end %>
+
+<% end %>
+<% end %>

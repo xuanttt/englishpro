@@ -14,7 +14,7 @@
   <% if false %>
     <div class="field">
       <%= f.label :user_id %><br>
-      <%= f.number_field :user_id %>
+      <%= f.number_field :user_id, class: "form-control" %>
     </div>
   <% end %>
   
@@ -31,6 +31,6 @@
     <%= f.date_select :deadline %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "OK", class: "btn btn-info" %>
   </div>
 <% end %>
