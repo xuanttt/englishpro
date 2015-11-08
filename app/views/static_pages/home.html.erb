@@ -1,24 +1,9 @@
-<h1>This is our home page</h1>
-<p>ホームページです</p>
-
-<% if user_signed_in? %>
-    <h3>Current goal:</h3>
-    <% plancount = 0 %>
-    <% current_user.plans.each do |plan| %>
-    <% if !plan.is_over? %>
-        <h4><%= current_plan_explanation(plan) %></h4>
-        <p><%= plan_completed(plan) %></p>
-        <p><%= plan_left(plan) %></p>
-        <p><%= plan_suggestion(plan) %></p>
-    <% end %>
-    <% end %>
+<div class="center jumbotron">
+    <h3>Learning English Now</h3>
     
-    <h3>Past goals:</h3>
-    <% plancount = 0 %>
-    <% current_user.plans.each do |plan| %>
-    <% if plan.is_over? %>
-    <% plancount = plancount + 1 %>
-        <p><%= plan_explanation(plan, plancount) %></p>
-    <% end %>
-    <% end %>
-<% end %>
+  <% if user_signed_in? %>
+    <%= link_to "Create new plan", new_plan_path, class: "btn btn-lg btn-primary" %>
+  <% else %>
+    <%= link_to "Sign up now!", new_user_registration_path, class: "btn btn-lg btn-primary" %>
+  <% end %>
+</div>
