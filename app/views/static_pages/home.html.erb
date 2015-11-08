@@ -10,6 +10,9 @@
         <p><%= plan_completed(plan) %></p>
         <p><%= plan_left(plan) %></p>
         <p><%= plan_suggestion(plan) %></p>
+        <%= line_chart [{name:"済んだレッソン/テストの数", data: chart_data_about_plan_completed(plan)},
+        {name: "ゴールの理想的な平均のレッソン/テストの数", data: chart_data_plan_ideal_suggestion(plan)}],
+        library: {'hAxis' => {'format' => 'yyyy/MM/dd'}}%>
     <% end %>
     <% end %>
     
