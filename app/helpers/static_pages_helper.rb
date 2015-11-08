@@ -27,7 +27,8 @@ module StaticPagesHelper
     end
     
     def plan_left(plan)
-        if (plan.act.eql? "Study") then result = "ゴールを完成するために、まだ#{plan.how_many-plan.task_completed}つのレッソン残っている"
+        if (plan.is_completed) then result = "ゴール完成しました！おめでとうございます！"
+        elsif (plan.act.eql? "Study") then result = "ゴールを完成するために、まだ#{plan.how_many-plan.task_completed}つのレッソン残っている"
         elsif (plan.act.eql? "Test") then result = "ゴールを完成するために、まだ#{plan.how_many-plan.task_completed}題のテスト残っている"
         else result = "ゴールを完成するために、まだ#{plan.how_many-plan.task_completed}つの#{plan.act}残っている"
         end
@@ -35,10 +36,20 @@ module StaticPagesHelper
     end
     
     def plan_suggestion(plan)
-        if (plan.act.eql? "Study") then result = "一日、#{(Float(plan.how_many-plan.task_completed)/plan.day_remaining).round(2)}つのレッソン勉強するのを勧めます"
+        if (plan.is_completed) then result = ""
+        elsif (plan.act.eql? "Study") then result = "一日、#{(Float(plan.how_many-plan.task_completed)/plan.day_remaining).round(2)}つのレッソン勉強するのを勧めます"
         elsif (plan.act.eql? "Test") then result = "一日、#{(Float(plan.how_many-plan.task_completed)/plan.day_remaining).round(2)}題のテスト受験するのを勧めます"
         else result = "一日、#{(Float(plan.how_many-plan.task_completed)/plan.day_remaining).round(2)}つの#{plan.act}するのを勧めます"
         end
         return result
+    end
+    
+    def chart_data_about_plan_completed(plan)
+        plan.task_completed_chart_data
+    end
+    
+    def chart_data_plan_ideal_suggestion(plan)
+        day_array = (plan.created_at.to_date..plan.deadline.to_date).to_a
+        Hash[day_array.collect {|day| [day, (plan.how_many)/Float(plan.deadline.to_date-plan.created_at.to_date+1)]}]
     end
 end
