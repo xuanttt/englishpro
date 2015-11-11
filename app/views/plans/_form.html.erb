@@ -19,18 +19,18 @@
   <% end %>
   
   <div class="field">
-    <%= f.label :act %><br>
-    <%= f.select :act, options_for_select(["Study", "Test", "Other"]) %>
+    <%= f.label "行為" %><br>
+    <%= f.select :act, options_for_select(["勉強", "テスト", "その他"]) %>
   </div>
   <div class="field">
-    <%= f.label :how_many %><br>
+    <%= f.label "どのぐらい" %><br>
     <%= f.number_field :how_many %>
   </div>
   <div class="field">
-    <%= f.label :deadline %><br>
+    <%= f.label "期限" %><br>
     <%= f.date_select :deadline %>
   </div>
   <div class="actions">
-    <%= f.submit "OK", class: "btn btn-info" %>
+    <%= f.submit "確定", class: "btn btn-info" %>
   </div>
 <% end %>

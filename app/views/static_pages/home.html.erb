@@ -19,7 +19,7 @@
 
   <% end %>  
   <% if user_signed_in? %>
-    <%= link_to "Create new plan", new_plan_path, class: "btn btn-lg btn-primary" %>
+    <%= link_to "新計画の作成", new_plan_path, class: "btn btn-lg btn-primary" %>
   <% else %>
     <%= link_to "Sign up now!", new_user_registration_path, class: "btn btn-lg btn-primary" %>
   <% end %>
